@@ -1,0 +1,12 @@
+#fire{
+    text-align: center; /* Centers the content inside the div */
+}
+#form{
+    text-align: center;
+}
+label {
+    margin-right: 30px; /* Adds space to the right of each label */
+}
+input{
+    margin-right: 10px; /* Adds space to the right of each label */
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Space Shuttle System</title>
+    <link rel="stylesheet" type="text/css" href="../../static/namestyle.css">
+</head>
+<body>
+    <div id="fire">
+        <h1>Book flight to the planets</h1>
+    </div>
+    <div id="form">
+        <form th:method="POST" th:action="@{/reservation/frfr}">
+            <label for="from">From: </label>
+            <input type="text" name="from" id="from" />
+
+<!--            <label for="email">To:</label>-->
+<!--            <input type="email" id="email" name="email"><br><br>-->
+
+<!--            <label for="nam">From:</label>-->
+<!--            <input type="text" id="nam" name="name">-->
+
+<!--            <label for="emai">To:</label>-->
+<!--            <input type="email" id="emai" name="email"><br><br>-->
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
