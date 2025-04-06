@@ -1,6 +1,7 @@
 package kz.serikov.shutelling.controllers;
-
+import kz.serikov.shutelling.DAO.AvailableVoyage;
 import kz.serikov.shutelling.DAO.DestinationDAO;
+import kz.serikov.shutelling.exceptions.PlanetNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,13 +32,28 @@ public class ReservationController {
     }
 
     @PostMapping("/frfr")
-    public String reservation(@RequestParam String from, RedirectAttributes redirectAttributes) {
-        String planet = destinationDAO.find(from);
-        if (planet == null) {
-            planet = "Unknown Planet";
+    public String reservation(@RequestParam String from,
+                              @RequestParam String to,
+                              Model model,
+                              RedirectAttributes redirectAttributes) {
+        try {
+            // Try to find the planet from the "from" input
+            String DepartureLocation = destinationDAO.findVoyageDeparture(new AvailableVoyage(from,to,0,0));
+            String ArrivaLocation = destinationDAO.findVoyageArrival(new AvailableVoyage(from,to,0,0));
+            int findAvailableSeats = destinationDAO.findAvailableSeats(new AvailableVoyage(from,to,0,0));
+            double price = destinationDAO.findPrice(new AvailableVoyage(from,to,0,0));
+            redirectAttributes.addFlashAttribute("destination", DepartureLocation);
+            redirectAttributes.addFlashAttribute("arrival", ArrivaLocation);
+            redirectAttributes.addFlashAttribute("seats", findAvailableSeats);
+            redirectAttributes.addFlashAttribute("price", price);// Flash attribute for short-lived session
+            return "redirect:/reservation/filteredflights";
+        } catch (PlanetNotFoundException ex) {
+            System.out.println( ex.getMessage());
+            // If the planet is not found, handle the exception
+            model.addAttribute("error", ex.getMessage()); // Add error message to the model
+            return "reservations/reservation"; // Return to the reservation page with error message
         }
-        redirectAttributes.addFlashAttribute("planet", planet); // Flash attribute for short-lived session
-        return "redirect:/reservation/filteredflights";
+
     }
 
 

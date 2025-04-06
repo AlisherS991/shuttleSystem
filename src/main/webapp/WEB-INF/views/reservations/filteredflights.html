@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Here are filtered flights</title>
+    <style>
+        #destination {
+            text-align: center;
+            width: 80%; /* Set a width to control block size */
+            margin: 0 auto; /* Center the block */
+        }
+    </style>
 </head>
 <body>
-<h1>Filtered Flights</h1>
-<a th:text="${planet}">user</a>
+<div>
+    <h1>Filtered Flights</h1>
+</div>
 
+<div id="destination">
+    <p><strong>Destination:</strong> <span th:text="${destination}">user</span></p>
+    <p><strong>Arrival:</strong> <span th:text="${arrival}">user</span></p>
+    <p><strong>Available Seats:</strong> <span th:text="${seats}">user</span></p>
+    <p><strong>Price:</strong> <span th:text="${price}">user</span></p>
+</div>
 </body>
 </html>
+

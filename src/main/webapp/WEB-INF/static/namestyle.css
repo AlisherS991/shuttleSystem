@@ -4,9 +4,28 @@
 #form{
     text-align: center;
 }
-label {
-    margin-right: 30px; /* Adds space to the right of each label */
+label{
+    margin-right: 10px; /* Adds space to the right of each label */
 }
 input{
-    margin-right: 10px; /* Adds space to the right of each label */
+    margin-right: 40px; /* Adds space to the right of each label */
+}
+
+#go{
+    width:100px;
+}
+
+#come{
+    width:100px;
+}
+
+#from{
+    width:100px;
+}
+
+#to{
+    width:100px;
+}
+#destination{
+    text-align: center;
 }
